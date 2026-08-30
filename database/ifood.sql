@@ -1,28 +1,30 @@
-create database ifood;
-use ifood;
+CREATE DATABASE ifood;
 
-create table cliente(
-    id int auto_increment primary key,
-    nome varchar(100) not null,
-    email varchar(100) not null,
-    telefone varchar(20)not null,
-    endereco varchar (20)
+USE ifood;
+
+CREATE TABLE clientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    endereco VARCHAR(200) NOT NULL
 );
 
-create table Restaurante(
-    id int auto_increment primary key,
-    nome varchar(100) not null,
-  categoria varchar(50) not null,
-    telefone varchar(50)
-    endereco varchar(50)
+CREATE TABLE restaurantes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    endereco VARCHAR(200) NOT NULL
 );
 
-create table Pedido(
-    id int auto_increment primary key,
-   cliente_id varchar(100) not null,
-   restaurante_id varchar(50) not null,
-    data_pedido varchar(50) not null,
-    valor int,
-  status int,
-    foreign key (cliente_id) references clientes(id)
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT NOT NULL,
+    restaurante_id INT NOT NULL,
+    data_pedido DATETIME NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+    FOREIGN KEY (restaurante_id) REFERENCES restaurantes(id)
 );
